@@ -1,0 +1,97 @@
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  //font-size: 62.5%;
+  font-size: 10px;
+}
+
+body {
+  margin: auto;
+  word-wrap: break-word;
+  -webkit-text-size-adjust: 100%;
+  font-family: $font_default;
+  // @media screen and (-ms-high-contrast: active),
+  //                   (-ms-high-contrast: none) {
+  //   font-family: 'sans-serif'; //support IE10 & 11
+  // }
+}
+
+main,
+header,
+footer {
+  display: block;
+}
+
+iframe {
+  width: 100%;
+}
+
+img {
+  font-size: 0;
+}
+
+a {
+  &:link,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+input,
+select,
+textarea {
+  border: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select {
+
+}
+
+input {
+  ::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+select {
+  //appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+::selection {
+}
+::-moz-selection {
+}
+
+/**
+ * mobile
+ */
+@include mobile {
+  body {
+    min-width: 320px;
+  }
+}

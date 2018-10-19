@@ -1,0 +1,10 @@
+.l-container {
+}
+
+/**
+ * mobile
+ */
+@include mobile {
+  .l-container {
+  }
+}

@@ -1,0 +1,6 @@
+*.DS_Store
+*node_modules
+*.docker-sync
+*npm-debug.log
+yarn.lock
+yarn-error.log

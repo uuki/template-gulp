@@ -1,0 +1,25 @@
+@mixin retina-sprite-width($r-sprite) {
+  width: nth($r-sprite, 5)/2;
+}
+ 
+@mixin retina-sprite-height($r-sprite) {
+  height: nth($r-sprite, 6)/2;
+}
+
+@mixin retina-sprite-position($r-sprite) {
+  $sprite-offset-x: nth($r-sprite, 3)/2;
+  $sprite-offset-y: nth($r-sprite, 4)/2;
+  background-position: $sprite-offset-x $sprite-offset-y;
+}
+ 
+@mixin retina-sprite-size($r-sprite) {
+  background-size: nth($r-sprite, 7)/2 nth($r-sprite, 8)/2;
+}
+
+@mixin retina-sprite($r-sprite) {
+  @include sprite-image($r-sprite);
+  @include retina-sprite-position($r-sprite);
+  @include retina-sprite-width($r-sprite);
+  @include retina-sprite-height($r-sprite);
+  @include retina-sprite-size($r-sprite); 
+}

@@ -1,0 +1,50 @@
+{
+  "name": "template-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "gulp",
+    "build": "gulp",
+    "reset-package": "node reset.js"
+  },
+  "author": "yuichi aoki",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "6.22.1",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "6.22.0",
+    "babelify": "7.3.0",
+    "bower": "^1.8.0",
+    "debowerify": "^1.5.0",
+    "fs-extra": "^7.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-ignore": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-merge": "^0.1.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.1",
+    "require-dir": "^1.1.0",
+    "through2": "^2.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0",
+    "watchify": "^3.7.0"
+  },
+  "devDependencies": {
+    "gulp-task-module-assemble": "file:./gulp/tasks/assemble",
+    "gulp-task-module-browser_sync": "file:./gulp/tasks/browser_sync",
+    "gulp-task-module-browserify": "file:./gulp/tasks/browserify",
+    "gulp-task-module-compress": "file:./gulp/tasks/compress",
+    "gulp-task-module-imagemin": "file:./gulp/tasks/imagemin",
+    "gulp-task-module-sass": "file:./gulp/tasks/sass",
+    "gulp-task-module-sass_globbing": "file:./gulp/tasks/sass_globbing",
+    "gulp-task-module-sprite_smith": "file:./gulp/tasks/sprite_smith",
+    "gulp-task-module-webpack": "file:./gulp/tasks/webpack"
+  }
+}

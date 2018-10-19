@@ -1,0 +1,68 @@
+%link-border {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  padding-bottom: .2em;
+  z-index: 0;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: .5em;
+    //background: $color;
+    z-index: -1;
+    transition: background $tr_default;
+  }
+}
+
+@mixin link-border($color: #a8c9e7) {
+  @extend %link-border;
+
+  &:hover {
+    &:after {
+      background: $c_yellow;
+    }
+  }
+
+  &:after {
+    background: $color;
+  }
+}
+
+@mixin link-border-inline($y, $spread) {
+  transition: box-shadow $tr_default;
+  box-shadow: inset 0 $y 0 $spread #a8c9e7;
+}
+
+@mixin link-border-inline-hover($y, $spread) {
+  box-shadow: inset 0 $y 0 $spread $c_yellow;
+}
+
+@mixin link-gnav-hover($color: #a8c9e7, $bold: false) {
+  @extend %link-border;
+  transition: color $tr_default;
+
+  &:after {
+    background: $color;
+    width: 0%;
+    transition: width $tr_default;
+    @if $bold {
+      height: .6em;
+    }
+  }
+
+  &:hover {
+    color: #4d4d4d;
+  }
+
+  &:hover,
+  &.router-link-active {
+    &:after {
+      width: 100%;
+    }
+  }
+}

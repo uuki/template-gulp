@@ -1,0 +1,70 @@
+$BREAK_POINT_MOBILE: 768px;
+$BREAK_POINT_TABLET: 768px;
+$BREAK_POINT_PC_NARROW: 1000px;
+$BREAK_POINT_PC_LARGE: 1400px;
+
+@mixin hover($break-point: $BREAK_POINT_MOBILE) {
+  @media screen and (min-width: ($break-point + 1)) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// @mixin pc_large($break-point: $BREAK_POINT_PC_LARGE) {
+//   @media screen and (min-width: $break-point + 1) {
+//     @content;
+//   }
+// }
+
+
+// @mixin pc($break-point: $BREAK_POINT_MOBILE) {
+//   @media screen and (min-width: $break-point + 1) {
+//     @content;
+//   }
+// }
+
+@mixin mobile($break-point: $BREAK_POINT_MOBILE) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+
+@mixin tablet($break-point: $BREAK_POINT_TABLET) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+
+
+// @mixin pc-narrow($break-point: $BREAK_POINT_PC_NARROW) {
+//   @media screen and (max-width: $break-point) {
+//     @content;
+//   }
+// }
+
+
+// @mixin pc-large {
+//   @media screen and (min-width: $BREAK_POINT_PC_LARGE) {
+//     & {
+//       @content;
+//     }
+//   }
+// }
+
+
+// @mixin landscape {
+//   @media only screen and (orientation: landscape) {
+//     & {
+//       @content;
+//     }
+//   }
+// }
+
+// @mixin height870() {
+//   @media screen and (min-height: 870px) {
+//     & {
+//       @content;
+//     }
+//   }
+// }

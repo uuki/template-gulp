@@ -1,0 +1,43 @@
+---
+published: false
+---
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+  {{> _ogp }}
+
+  <link rel="apple-touch-icon" href="">
+  <link rel="icon" href="">
+
+  <link rel="preload" href="{{ assets }}/css/style.min.css" as="style">
+  <link rel="preload" href="{{ assets }}/js/bundle.js" as="script">
+
+  <link rel="stylesheet" href="{{ assets }}/css/style.min.css" media="screen">
+</head>
+<body>
+  {{> _svg }}
+  <div class="l-container">
+    {{> _header }}
+
+    <main class="l-main">
+      {% body %}
+    </main>
+
+    {{> _footer }}
+  </div>
+
+  <script src="{{ assets }}/js/bundle.js"></script>
+</body>
+</html>

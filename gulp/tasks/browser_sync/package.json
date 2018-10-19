@@ -1,0 +1,14 @@
+{
+  "name": "gulp-task-module-browser_sync",
+  "version": "0.0.1",
+  "description": "",
+  "main": "browser_sync.js",
+  "private": true,
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "connect-history-api-fallback": "^1.3.0"
+  },
+  "devDependencies": {},
+  "author": "yuichi aoki",
+  "license": "MIT"
+}
