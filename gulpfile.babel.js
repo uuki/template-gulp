@@ -24,9 +24,9 @@ Object.keys(config.tasks).forEach(name => {
  * ▼ 要編集エリア　TODO: モジュール化
  */
 gulp.task('watch', () => {
-  gulp.watch(`${ config.assemble.sourceDir }/**/*.{hbs,yml,json}`, ['assemble']);
-  gulp.watch(`${ config.sass.sourceDir }/**/*.scss`, ['sass']);
-  gulp.watch(`${ config.webpack.sourceDir }/**/*.js`, ['webpack']);
+  process.$.watch(`${ config.assemble.sourceDir }/**/*.{hbs,yml,json}`, () => gulp.start(['assemble']));
+  process.$.watch(`${ config.sass.sourceDir }/**/*.scss`, () => gulp.start(['sass']));
+  process.$.watch(`${ config.webpack.sourceDir }/**/*.js`, () => gulp.start(['webpack']));
 })
 
 gulp.task('default', ['browser-sync', 'sass_globbing', 'watch']);

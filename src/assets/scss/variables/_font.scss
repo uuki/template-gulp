@@ -1,3 +1,45 @@
+// /**
+//  * Google fonts - Noto Sans JP Bold
+//  */
+// @font-face {
+//   font-family: 'Noto Sans Japanese';
+//   font-style: normal;
+//   font-weight: 300;
+//   src: local("Noto Sans Japanese"),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Light.woff2') format('woff2'),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Light.woff') format('woff');//,
+//         // url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Light.otf') format('opentype');
+//   font-display: swap;
+// }
+
+// /**
+//  * Google fonts - Noto Sans JP Bold
+//  */
+// @font-face {
+//   font-family: 'Noto Sans Japanese';
+//   font-style: normal;
+//   font-weight: 700;
+//   src: local("Noto Sans Japanese"),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff2') format('woff2'),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff') format('woff');//,
+//         // url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.otf') format('opentype');
+//   font-display: swap;
+// }
+
+// /**
+//  * Google fonts - Noto Sans JP Black
+//  */
+// @font-face {
+//   font-family: 'Noto Sans Japanese';
+//   font-style: normal;
+//   font-weight: 900;
+//   src: local("Noto Sans Japanese"),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Black.woff2') format('woff2'),
+//         url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Black.woff') format('woff');//,
+//         // url('https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Black.otf') format('opentype');
+//   font-display: swap;
+// }
+
 // @font-face {
 //   font-family: 'icomoon';
 //   src: url('../../fonts/icomoon.woff?7593wo') format('woff'),
@@ -22,7 +64,7 @@
 // }
 
 // $font_<>: '', sans-serif;
-$font_default: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', Arial, sans-serif;
+$font_default: YuGothic, 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, Arial, sans-serif;
 
 // %font_<>_regular {
 // }

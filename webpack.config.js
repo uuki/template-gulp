@@ -26,13 +26,15 @@ const createLintingRule = () => ({
   }
 })
 
+const Entries = {
+  'app': ['babel-polyfill', `${config.sourceDir}/${config.entry}`]
+}
+
 const webpackConfig = {
-  entry: {
-    app: ['babel-polyfill', `${config.sourceDir}/${config.entry}`]
-  },
+  entry: Entries,
   output: {
     path: resolve(config.publishDir),
-    filename: 'bundle.js',
+    filename: '[name].js',
     chunkFilename: 'bundle.chunk.js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
@@ -65,29 +67,40 @@ const webpackConfig = {
       },
       {
         test: /\.js$/,
+        exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
         loader: 'babel-loader',
-        options: {
-          // presets: ['env', 'stage-2']
-          presets: [
-            ['env',
-              {
-                modules: false,
-                targets: {
-                  browsers: ['last 2 versions']
+        use: {
+          options: {
+            presets: [
+              ['env',
+                {
+                  modules: false,
+                  targets: {
+                    browsers: ['last 2 versions', 'not ie < 11']
+                  }
                 }
-              }
+              ],
+              "stage-2"
             ],
-            "stage-3"
-          ],
-          'plugins': ["transform-vue-jsx", "transform-runtime"],
-          'env': {
-            'test': {
-              'presets': ['env', 'stage-3'],
-              'plugins': ['transform-vue-jsx', 'dynamic-import-node']
+            'plugins': ['transform-runtime'],
+            env: {
+              'test': {
+                'presets': [
+                  'env',
+                  'stage-2'
+                ],
+                'plugins': [
+                  'transform-vue-jsx',
+                  'transform-object-rest-spread',
+                  'transform-class-properties',
+                  'transform-object-assign',
+                  'dynamic-import-node'
+                ]
+              }
             }
           }
         },
-        include: [resolve(config.sourceDir), /*resolve('test'), */resolve('node_modules/webpack-dev-server/client')]
+        // include: [resolve(config.sourceDir), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.scss$/,
@@ -162,7 +175,7 @@ const webpackConfig = {
     // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      chunks: [`${config.sourceDir}/${config.entry}`],
+      chunks: Entries,
     }),
     new ExtractTextPlugin({
       filename: 'style.[contenthash].css',

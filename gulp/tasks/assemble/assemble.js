@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import del from 'del';
 import ignore from 'gulp-ignore';
 import through from 'through2';
 import prettify from 'gulp-prettify';
@@ -10,21 +11,25 @@ import fs from 'fs-extra';
 const app = assemble();
 const config = require('../../../config').assemble;
 
-gulp.task('assemble', () => {
-  app.dataLoader('yml', (str, fp) => {
-    return yaml.safeLoad(str)
-  })
+app.dataLoader('yml', (str, fp) => {
+  return yaml.safeLoad(str)
+})
 
-  app.data(`${ config.sourceDir }/data/config.yml`)
+gulp.task('assemble:clearn', () => {
+  del.sync([`${ config.publishDir }/**/*.html`, `!${ config.publishDir }/assets`], { force: true })
+})
+
+gulp.task('assemble:load', (cb) => {
+
+  app.data(`${ config.sourceDir }/data/*.yml`);
 
   app.layouts(`${ config.sourceDir }/layouts/*.hbs`);
-  app.pages(`${ config.sourceDir }/*.hbs`);
+  app.pages(`${ config.sourceDir }/pages/**/*.hbs`);
   app.partials(`${ config.sourceDir }/partials/**/*.hbs`);
+  cb();
+})
 
-  // app.dataLoader('yml', (str, fp) => {
-  //   return yaml.safeLoad(str);
-  // });
-  // app.data(`${ config.base.sourceDir }/data/config.yml`);
+gulp.task('assemble:compile', () => {
 
   return app.toStream('pages')
     .pipe(through.obj((chunk, enc, cb) => {
@@ -40,3 +45,5 @@ gulp.task('assemble', () => {
     .pipe(ignore.exclude(['**/layouts/*.html', '**/partials/*.html']))
     .pipe(app.dest(`${ config.publishDir }/`))
 })
+
+gulp.task('assemble', ['assemble:clearn', 'assemble:load', 'assemble:compile'])

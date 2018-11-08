@@ -16,7 +16,8 @@ gulp.task('sass', () => {
       sourceMap: config.sourceMap
     }))
     .pipe(autoprefixer({
-      browsers: config.browsers
+      browsers: config.browsers,
+      grid: true
     }))
     .pipe(cleanCss({
       debug: true
