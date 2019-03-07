@@ -5,10 +5,18 @@ const webpack = require('webpack')
 const config = require('./config')['webpack']
 const autoprefixer = require('autoprefixer')
 const path = require('path')
+// const glob = require('glob');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
+/**
+ * 実行時コマンドを判定してビルド切り替え
+ */
+if ( process.env.npm_lifecycle_event === 'build' ) {
+  process.env.NODE_ENV = 'production';
+}
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -26,16 +34,29 @@ const createLintingRule = () => ({
   }
 })
 
-const Entries = {
-  'app': ['babel-polyfill', `${config.sourceDir}/${config.entry}`]
-}
+/**
+ * エントリポイントを下層ページ毎に作成する場合は使用
+ */
+// const createSubEntry = (subDir) => {
+//   const subFiles = glob.sync(`./js/${subDir}/*.js`)
+//   const subEntries = {}
+//   subFiles.forEach(filePath => {
+//     subEntries[filePath.match(/\.\/js\/(.*)\.js$/)[1]] = filePath;
+//   })
+
+//   return subEntries
+// }
+
+const Entries = Object.assign({
+    'app': ['babel-polyfill', `${config.sourceDir}/${config.entry}`]
+  },/*createSubEntry('pages')*/ {})
 
 const webpackConfig = {
   entry: Entries,
   output: {
     path: resolve(config.publishDir),
     filename: '[name].js',
-    chunkFilename: 'bundle.chunk.js',
+    // chunkFilename: 'bundle.chunk.js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -68,8 +89,8 @@ const webpackConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
-        loader: 'babel-loader',
         use: {
+          loader: 'babel-loader',
           options: {
             presets: [
               ['env',
@@ -83,7 +104,7 @@ const webpackConfig = {
               "stage-2"
             ],
             'plugins': ['transform-runtime'],
-            env: {
+            'env': {
               'test': {
                 'presets': [
                   'env',
@@ -100,7 +121,28 @@ const webpackConfig = {
             }
           }
         },
-        // include: [resolve(config.sourceDir), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        // query: {
+        //   // presets: ['env', 'stage-2'],
+        // //   presets: [
+        // //     ['env',
+        // //       {
+        // //         modules: false,
+        // //         targets: {
+        // //           browsers: ['last 2 versions']
+        // //         }
+        // //       }
+        // //     ],
+        // //     "stage-2"
+        // //   ],
+        // //   'plugins': ['transform-vue-jsx', 'transform-runtime'],
+        // //   'env': {
+        // //     'test': {
+        // //       'presets': ['env', 'stage-2'],
+        // //       'plugins': ['transform-vue-jsx', 'dynamic-import-node']
+        // //     }
+        // //   }
+        // },
+        // include: [resolve(config.sourceDir), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.scss$/,
@@ -175,7 +217,7 @@ const webpackConfig = {
     // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      chunks: Entries,
+      chunks: Object.keys(Entries),
     }),
     new ExtractTextPlugin({
       filename: 'style.[contenthash].css',
@@ -197,6 +239,9 @@ const webpackConfig = {
 
 if(process.env.NODE_ENV === 'production') {
   webpackConfig.plugins.push(
+    /**
+     * uglify
+     */
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
@@ -205,6 +250,16 @@ if(process.env.NODE_ENV === 'production') {
       },
       sourceMap: false,
       parallel: true
+    }),
+
+    /**
+     * gzip
+     */
+    new CompressionPlugin({
+      test: /\.(js|vue)(\?.*)?$/i,
+      filename: '[path].gz',
+      algorithm: 'gzip',
+      minRatio: 0.8
     })
   )
 }

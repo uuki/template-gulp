@@ -5,7 +5,7 @@
   "scripts": {
     "setup": "node setup.js",
     "start": "gulp",
-    "build": "gulp",
+    "build": "gulp build",
     "reset-package": "node reset.js"
   },
   "author": "yuichi aoki",

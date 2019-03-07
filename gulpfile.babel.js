@@ -30,5 +30,5 @@ gulp.task('watch', () => {
 })
 
 gulp.task('default', ['browser-sync', 'sass_globbing', 'watch']);
-gulp.task('build', ['imagemin', 'compress']);
-// gulp.task('get', ['spread2json']);
+gulp.task('build', ['imagemin', 'compress', 'webpack', 'assemble']);
+gulp.task('host', ['browser-sync']);
