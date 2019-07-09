@@ -1,6 +1,15 @@
 import BezierEasing from 'bezier-easing'
 
 /**
+ * asyncForeach
+ */
+export async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
+/**
  * setCookie
  */
 export function setCookie(expire_hour, name, value=1) {
@@ -32,13 +41,6 @@ export function getCookie(name) {
   }
 
   return result;
-}
-
-/**
- * arrLikeForEach
- */
-export function arrLikeForEach(array, callback) {
-  return Array.prototype.forEach.call(array, callback)
 }
 
 /**

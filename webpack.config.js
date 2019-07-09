@@ -115,6 +115,7 @@ const webpackConfig = {
                   'transform-object-rest-spread',
                   'transform-class-properties',
                   'transform-object-assign',
+                  'transform-async-to-generator',
                   'dynamic-import-node'
                 ]
               }
