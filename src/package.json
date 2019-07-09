@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "setup": "node setup.js",
-    "start": "gulp",
+    "dev": "gulp",
+    "start": "gulp host",
     "build": "gulp build",
     "reset-package": "node reset.js"
   },
@@ -46,5 +47,9 @@
     "gulp-task-module-sass_globbing": "file:./gulp/tasks/sass_globbing",
     "gulp-task-module-sprite_smith": "file:./gulp/tasks/sprite_smith",
     "gulp-task-module-webpack": "file:./gulp/tasks/webpack"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie 11"
+  ]
 }
