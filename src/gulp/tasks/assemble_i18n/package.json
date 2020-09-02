@@ -14,7 +14,7 @@
     "path": "^0.12.7",
     "gulp-ignore": "^2.0.2",
     "google-auth-library": "^0.9.10",
-    "googleapis": "^15.0.0"
+    "googleapis": "^59.0.0"
   },
   "devDependencies": {},
   "author": "yuichi aoki",
